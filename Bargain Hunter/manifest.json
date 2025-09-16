@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Bargain Hunter",
+  "version": "1.0",
+  "description": "Compare product prices between Amazon.in and Flipkart.com to find the best deals",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": [
+    "*://*.amazon.in/*",
+    "*://*.flipkart.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.amazon.in/*"],
+      "js": ["content-scripts/amazon.js"]
+    },
+    {
+      "matches": ["*://*.flipkart.com/*"],
+      "js": ["content-scripts/flipkart.js"]
+    }
+  ]
+}
